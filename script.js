@@ -13,7 +13,7 @@ function multiply(a,b) {
 function divide(a,b) {
     let div = a/b;
     div = div.toString();
-    div = Number(div.slice(0, 15));
+    div = Number(div.slice(0, 13));
     return div;
 }
 
@@ -69,7 +69,7 @@ function operatorPress(memory) {
     } else if (memory.b === "") {
         memory.op = memory.input;
     } else {
-        a = parseInt(memory.a);
+        a = parseFloat(memory.a);
         b = parseInt(memory.b);
         switch(memory.op) {
             case "+":
