@@ -11,7 +11,10 @@ function multiply(a,b) {
 }
 
 function divide(a,b) {
-    return a/b;
+    let div = a/b;
+    div = div.toString();
+    div = Number(div.slice(0, 15));
+    return div;
 }
 
 function runCalculator() {
@@ -63,7 +66,7 @@ function digitPress(memory) {
 function operatorPress(memory) {
     if (memory.a === "0") {
         return memory;
-    } else if (memory.b === "0") {
+    } else if (memory.b === "") {
         memory.op = memory.input;
     } else {
         a = parseInt(memory.a);
@@ -79,11 +82,16 @@ function operatorPress(memory) {
                 memory.a = multiply(a,b);
                 break;
             case "/":
+                if (b === 0) {
+                    memory = clearPress(memory);
+                    display.textContent = "NICE TRY";
+                    return memory;
+                }
                 memory.a = divide(a,b);
                 break;
         }
         display.textContent = memory.a;
-        memory.b = "0";
+        memory.b = "";
         memory.op = memory.input;
     }
     return memory;
